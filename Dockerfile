@@ -7,11 +7,11 @@ ENV DEBIAN_FRONTEND=noninteractive \
     OPENVPN_PROVIDER=**None**
 	
 
-RUN apt-get update && apt-get -y install supervisor openvpn dante-server inetutils-ping net-tools
+RUN apt-get update && apt-get -y install supervisor openvpn dante-server inetutils-ping net-tools openssl
 
 VOLUME /config
 
-RUN useradd x0r3n -p "$(openssl passwd -1 P%ssw0rd123)"
+RUN useradd x0r3n -p "$(openssl passwd -1 Passw0rd123)"
 
 ADD openvpn /etc/openvpn
 

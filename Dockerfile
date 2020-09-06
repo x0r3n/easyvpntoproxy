@@ -11,6 +11,8 @@ RUN apt-get update && apt-get -y install supervisor openvpn dante-server inetuti
 
 VOLUME /config
 
+RUN useradd x0r3n -p "$(openssl passwd -1 P%ssw0rd123)"
+
 ADD openvpn /etc/openvpn
 
 ADD scripts/ /

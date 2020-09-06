@@ -9,18 +9,17 @@ $ docker run --privileged  -d \
               -e "OPENVPN_CONFIG=Netherlands" \
               -e "OPENVPN_USERNAME=user" \
               -e "OPENVPN_PASSWORD=pass" \
-              -p 1022:22 \
               -p 2000:3128 \
               x0r3n/vpntoproxy
 ```
 
 Now you can connect your application to a proxy `YourServerIP:2000`.
 
-All file you can found at my GitHub [here](https://github.com/x0r3n/vpntoproxy)
+All file you can found at my GitHub [here](https://github.com/x0r3n/easyvpntoproxy)
 
 ## OpenVPN configuration
 Build based on
-* [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
+* [ubuntu:latest]
 
 It bundles certificates and configurations for the following VPN providers:
 * anonine
@@ -63,7 +62,7 @@ $ docker run --privileged  -d \
               -e "OPENVPN_CONFIG=Netherlands" \
               -e "OPENVPN_USERNAME=user" \
               -e "OPENVPN_PASSWORD=pass" \
-              -p 1022:22 \
+              -p 5001:8080 \
               dceschmidt/openvpn-client
 ```
 
@@ -86,24 +85,6 @@ Find available OpenVPN configurations by looking in the openvpn folder of the Gi
 |`OPENVPN_OPTS` | Will be passed to OpenVPN on startup | See [OpenVPN doc](https://openvpn.net/index.php/open-source/documentation/manuals/65-openvpn-20x-manpage.html) |
 |`LOCAL_NETWORK` | Sets the local network that should have access. | `LOCAL_NETWORK=192.168.0.0/24`|
 
-### SSH connection
-This image has ssh connection enabled.
-We can map the port for example with `-p 1022:22`.
-
-For now it's only enabled the insecure private key from **[phusion/baseimage](https://github.com/phusion/baseimage-docker)**.
-
-To connect:
-```shell
-# Download the insecure private key
-curl -o insecure_key -fSL https://github.com/phusion/baseimage-docker/raw/master/image/services/sshd/keys/insecure_key
-chmod 600 insecure_key
-
-# Login to the container
-ssh -i insecure_key root@localhost:1022
-
-# Running a command inside the container
-ssh -i insecure_key root@localhost:1022 echo hello world
-```
 
 #### Use Google DNS servers
 Some have encountered problems with DNS resolving inside the docker container.

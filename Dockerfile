@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get update && apt-get -y install supervisor openvpn dante-server inetutils-ping net-tools openssl
 
-VOLUME /config
+#VOLUME /config
 
 RUN useradd x0r3n -p "$(openssl passwd -1 Passw0rd123)"
 
